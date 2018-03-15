@@ -33,6 +33,7 @@ import com.sk.dep.staff.admin.menu.service.staffGroupService;
  * Copyright(c) 2018 SK Holdings All rights reserved 
  */
 @RestController
+@RequestMapping(value="/staff") 
 public class staffGroupController {
 	@Autowired
 	private staffGroupService  objGroupService;
