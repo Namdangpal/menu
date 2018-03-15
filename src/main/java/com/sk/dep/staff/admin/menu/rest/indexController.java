@@ -52,7 +52,7 @@ public class indexController {
 	@RequestMapping(value="/") 
 	public String indexView() throws Exception{
 		System.out.println("indexView호출");
-		return "index";
+		return "redirect:/staff/roleEdit";
 	}
 	@RequestMapping(value="/roleEdit") 
 	public String roleEditView(Model model) throws Exception{
