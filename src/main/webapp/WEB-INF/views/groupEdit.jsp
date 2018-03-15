@@ -4,8 +4,9 @@
 <%@ include file="Head.jsp" %>
 
 <script type="text/javascript">
+const API_MAIN_PATH ="/staff";
   function funEdit(){	  
-        var strUrl = ($('#groupId').val().length > 0) ? "/groupUpdate":"/groupRegister";        
+        var strUrl = ($('#groupId').val().length > 0) ? API_MAIN_PATH + "/groupUpdate": API_MAIN_PATH + "/groupRegister";        
         var json_data = JSON.stringify(funGetJson()); 
         //alert(json_data);
         var request = $.ajax({
@@ -43,7 +44,7 @@
 	  $('#groupUse').val(objValue.groupUse);	  
   }
   function funGetData(id){
-	         var strUrl= '/groupListOne/' + id;
+	         var strUrl= API_MAIN_PATH + '/groupListOne/' + id;
        var request = $.ajax({
 	    	url : strUrl,
 	        type : 'get',
@@ -58,7 +59,7 @@
  } 
   
   function funAllList(){
-     var strUrl= '/groupAllList';
+     var strUrl= API_MAIN_PATH + '/groupAllList';
 	var request = $.ajax({
  		url : strUrl,
     	 type : 'get',
