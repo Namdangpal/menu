@@ -32,13 +32,13 @@
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">기초데이타관리<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/roleEdit">[관리자권한관리]</a></li>
-            <li><a href="/groupEdit">[관리자그룹관리]</a></li>
-            <li><a href="/menuEdit">[메뉴관리]</a></li> 
-            <li><a href="/menuAclEdit">[메뉴접근권한관리]</a></li>         
-            <li><a href="/menuTypeEdit">[메뉴타입관리]</a></li> 
+            <li><a href="/staff/roleEdit">[관리자권한관리]</a></li>
+            <li><a href="/staff/groupEdit">[관리자그룹관리]</a></li>
+            <li><a href="/staff/menuEdit">[메뉴관리]</a></li> 
+            <li><a href="/staff/menuAclEdit">[메뉴접근권한관리]</a></li>         
+            <li><a href="/staff/menuTypeEdit">[메뉴타입관리]</a></li> 
             <li class="divider"></li>
-            <li><a href="/apiList">[API목록관리]</a></li>
+            <li><a href="/staff/apiList">[API목록관리]</a></li>
           </ul>
         </li> 
       </ul>
