@@ -9,8 +9,8 @@ const API_MAIN_PATH ="/staff";
   function funAclEdit(obj,Id,strMenu){ 
         var strUrl = ($('#menuReg').val() =="UPDATE") ? API_MAIN_PATH + "/groupMenuAclUpdate": API_MAIN_PATH + "/groupMenuAclRegister";        
         var json_data = funJsonReplace(JSON.stringify(funGetJson(obj,Id,strMenu))); 
-        alert(json_data);
-        document.write(json_data);
+        //alert(json_data);
+        //document.write(json_data);
        // return;
         var request = $.ajax({
 	    	url : strUrl,
@@ -161,8 +161,8 @@ const API_MAIN_PATH ="/staff";
  </div> 
 <link rel="stylesheet" href="/css/jquery.treegrid.css"> 
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
- <script src="js/jquery.treegrid.min.js"></script>
- <script src="js/jquery.cookie.js"></script>
+ <script src="/js/jquery.treegrid.min.js"></script>
+ <script src="/js/jquery.cookie.js"></script>
  
 <script type="text/javascript">
      $('.tree').treegrid();
@@ -199,8 +199,8 @@ const API_MAIN_PATH ="/staff";
              globalCounter++;
          }});
  </script>
- <script src="js/qunit-1.12.0.js"></script>
- <script src="js/tests.js"></script>
+ <script src="/js/qunit-1.12.0.js"></script>
+ <script src="/js/tests.js"></script>
 <%@ include file="bootstrap.jsp" %>
 </body>
 </html>
