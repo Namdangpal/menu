@@ -35,6 +35,7 @@ import com.sk.dep.staff.admin.menu.service.staffRoleService;
  * Copyright(c) 2018 SK Holdings All rights reserved 
  */
 @RestController
+@RequestMapping(value="/staff") 
 public class staffRoleController {
 	@Autowired
 	private staffRoleService  objRoleService;

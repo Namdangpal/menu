@@ -4,8 +4,10 @@
 <%@ include file="Head.jsp" %>
 
 <script role="text/javascript">
+  const API_MAIN_PATH ="/staff";
   function funEdit(){	  
-        var strUrl = ($('#roleId').val().length > 0) ? "/roleUpdate":"/roleRegister";        
+	    
+        var strUrl = ($('#roleId').val().length > 0) ? API_MAIN_PATH + "/roleUpdate": API_MAIN_PATH +"/roleRegister";        
         var json_data = JSON.stringify(funGetJson()); 
         var request = $.ajax({
 	    	url : strUrl,
@@ -39,7 +41,7 @@
 	  $('#roleUse').val(objValue.roleUse);	  
   }
   function funGetData(id){
-	         var strUrl= '/roleListOne/' + id;
+	         var strUrl= API_MAIN_PATH + '/roleListOne/' + id;
        var request = $.ajax({
 	    	url : strUrl,
 	        type : 'get',
@@ -55,7 +57,7 @@
   
   
   function funAllList(){
-     var strUrl= '/roleAllList';
+     var strUrl= API_MAIN_PATH + '/roleAllList';
 	var request = $.ajax({
  		url : strUrl,
     	 type : 'get',
