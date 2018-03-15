@@ -156,7 +156,7 @@ const API_MAIN_PATH ="/staff";
 	    		<c:if test="${board.groupUse == 0}">  		
 	    		<td>사용대기</td> 
 	    		</c:if>
-	    		<td><span class="btn btn-default btn-xs" onclick="document.location.href='/staffMenuTypeEdit?roleCode=${board.roleCode}&groupCode=${board.groupCode}&Id=${board.groupId}'">메뉴관리</span></td>
+	    		<td><span class="btn btn-default btn-xs" onclick="document.location.href='/staff/staffMenuTypeEdit?roleCode=${board.roleCode}&groupCode=${board.groupCode}&Id=${board.groupId}'">메뉴관리</span></td>
 	    	</tr>       	   
 	        </c:forEach> 
         </tbody>

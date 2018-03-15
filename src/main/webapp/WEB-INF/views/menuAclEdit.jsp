@@ -4,8 +4,9 @@
 <%@ include file="Head.jsp" %>
 
 <script role="text/javascript">
+  const API_MAIN_PATH ="/staff";
   function funEdit(){	  
-        var strUrl = ($('#aclId').val().length > 0) ? "/aclUpdate":"/aclRegister";        
+        var strUrl = ($('#aclId').val().length > 0) ? API_MAIN_PATH + "/aclUpdate": API_MAIN_PATH + "/aclRegister";        
         var json_data = JSON.stringify(funGetJson()); 
         var request = $.ajax({
 	    	url : strUrl,
@@ -40,7 +41,7 @@
 	  $('#aclUse').val(objValue.aclUse);	  
   }
   function funGetData(id){
-	         var strUrl= '/aclListOne/' + id;
+	         var strUrl= API_MAIN_PATH +  '/aclListOne/' + id;
        var request = $.ajax({
 	    	url : strUrl,
 	        type : 'get',
@@ -56,7 +57,7 @@
   
   
   function funAllList(){
-     var strUrl= '/aclAllList';
+     var strUrl= API_MAIN_PATH + '/aclAllList';
 	var request = $.ajax({
  		url : strUrl,
     	 type : 'get',

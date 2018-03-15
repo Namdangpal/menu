@@ -3,9 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="Head.jsp" %>
 <script type="text/javascript">
+const API_MAIN_PATH ="/staff";
   function funEdit(){	  
 	  	alert($('#menuReg').val());
-        var strUrl = ($('#menuReg').val() =="UPDATE") ? "/menuUpdate":"/menuRegister";        
+        var strUrl = ($('#menuReg').val() =="UPDATE") ? API_MAIN_PATH + "/menuUpdate": API_MAIN_PATH + "/menuRegister";        
         var json_data = funJsonReplace(JSON.stringify(funGetJson())); 
         alert(json_data);
         document.write(json_data);
@@ -86,7 +87,7 @@
   }
   
   function funSubInsert(id,strType){
-	  var strUrl= '/menuDTOListJoinOne/' + id;
+	  var strUrl= API_MAIN_PATH + '/menuDTOListJoinOne/' + id;
       var request = $.ajax({
 	    	url : strUrl,
 	        type : 'get',
@@ -103,7 +104,7 @@
 	       }); 
 } 
   function funGetData(id,strType){
-	   var strUrl= '/menuDTOListJoinOne/' + id;
+	   var strUrl= API_MAIN_PATH + '/menuDTOListJoinOne/' + id;
        var request = $.ajax({
 	    	url : strUrl,
 	        type : 'get',
@@ -118,7 +119,7 @@
 	       });
  }   
   function funAllList(){
-     var strUrl= '/menuAllList';
+     var strUrl= API_MAIN_PATH + '/menuAllList';
 	var request = $.ajax({
  		url : strUrl,
     	 type : 'get',
@@ -261,8 +262,8 @@ function funSorting(objValue){
  </div> 
 <link rel="stylesheet" href="/css/jquery.treegrid.css"> 
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
- <script src="js/jquery.treegrid.min.js"></script>
- <script src="js/jquery.cookie.js"></script>
+ <script src="/js/jquery.treegrid.min.js"></script>
+ <script src="/js/jquery.cookie.js"></script>
  
        <script type="text/javascript">
             $('.tree').treegrid();
@@ -299,8 +300,8 @@ function funSorting(objValue){
              globalCounter++;
          }});
  </script>
- <script src="js/qunit-1.12.0.js"></script>
- <script src="js/tests.js"></script>
+ <script src="/js/qunit-1.12.0.js"></script>
+ <script src="/js/tests.js"></script>
 <%@ include file="bootstrap.jsp" %>
 </body>
 </html>

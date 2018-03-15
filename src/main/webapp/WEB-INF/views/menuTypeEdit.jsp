@@ -3,8 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="Head.jsp" %>
 <script type="text/javascript">
+const API_MAIN_PATH ="/staff";
   function funEdit(){	  
-        var strUrl = ($('#typeId').val().length > 0) ? "/menuTypeUpdate":"/menuTypeRegister";        
+        var strUrl = ($('#typeId').val().length > 0) ? API_MAIN_PATH +  "/menuTypeUpdate": API_MAIN_PATH + "/menuTypeRegister";        
         var json_data = JSON.stringify(funGetJson()); 
         var request = $.ajax({
 	    	url : strUrl,
@@ -38,7 +39,7 @@
 	  $('#typeUse').val(objValue.typeUse);	  
   }
   function funGetData(id){
-	   var strUrl= '/menuTypeListOne/' + id;
+	   var strUrl= API_MAIN_PATH + '/menuTypeListOne/' + id;
        var request = $.ajax({
 	    	url : strUrl,
 	        type : 'get',
@@ -54,7 +55,7 @@
   
   
   function funAllList(){
-     var strUrl= '/menuTypeAllList';
+     var strUrl= API_MAIN_PATH + '/menuTypeAllList';
 	var request = $.ajax({
  		url : strUrl,
     	 type : 'get',

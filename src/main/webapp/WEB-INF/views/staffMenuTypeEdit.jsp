@@ -5,8 +5,9 @@
 <%@ include file="Head.jsp" %>
 
 <script type="text/javascript">
+const API_MAIN_PATH ="/staff";
   function funAclEdit(obj,Id,strMenu){ 
-        var strUrl = ($('#menuReg').val() =="UPDATE") ? "/groupMenuAclUpdate":"/groupMenuAclRegister";        
+        var strUrl = ($('#menuReg').val() =="UPDATE") ? API_MAIN_PATH + "/groupMenuAclUpdate": API_MAIN_PATH + "/groupMenuAclRegister";        
         var json_data = funJsonReplace(JSON.stringify(funGetJson(obj,Id,strMenu))); 
         alert(json_data);
         document.write(json_data);
@@ -30,7 +31,7 @@
 	  return objValue.replace(/\r/g, '').replace(/\\/g, "").replace(/\n/g, '').replace('"[','[').replace(']"',']');  
   }
   function funAclReg(obj){
-	 var strAcl;
+	 var strAcl; 
 	  var j = 0;
 	  strAcl = "";
 	    $("input[name='"+ obj+ "']:checked").each(function(i) {
@@ -91,7 +92,7 @@
       <div class="form-group" style="float:right;">
        <button type="button" class="btn btn-primary" name="btnRegister" id="btnRegister" onClick="funAllReg()" >등록</button>
        <button type="reset" class="btn btn-primary" name="btnReset" id="btnReset" >취소</button>
-       <button type="button" class="btn btn-primary" name="btnGroup" id="btnGroup" onClick="document.location.href='/groupEdit'" >그룹관리</button>
+       <button type="button" class="btn btn-primary" name="btnGroup" id="btnGroup" onClick="document.location.href='/staff/groupEdit'" >그룹관리</button>
       </div> 
       </c:if>
  	<table class="table table-hover" id="tree-2" >  
