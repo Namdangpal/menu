@@ -1,5 +1,10 @@
 package com.sk.dep.staff.admin.menu.repository;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.sk.dep.staff.admin.menu.domain.staffMenuType;
 import com.sk.dep.staff.admin.menu.domain.staffRole;
 
  
@@ -23,6 +28,7 @@ import com.sk.dep.staff.admin.menu.domain.staffRole;
  */
  
 public interface staffRoleRepository extends JpaRepository<staffRole, Long>{ 	
-	 
+	@Query(value = "SELECT * FROM staff_role Where role_use= ?1  Order by role_id" , nativeQuery = true)
+	public List<staffRole> findByRoleUseCode(int intUse); 
 }
  
