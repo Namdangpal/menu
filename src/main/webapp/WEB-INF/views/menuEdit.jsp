@@ -192,7 +192,7 @@ function funSorting(objValue){
       </div>          
       <div class="form-group">
         <label for="writer">메뉴_CODE</label>
-        <input type="text" class="form-control" id="menuCode" name="menuCode" placeholder="[영문대문자 코드형식 [XX-XX-XX-XX] 두자리 대포영문조합 (예) 메뉴관리 (MENU MANAGER -> MM)" >
+        <input type="text" class="form-control" id="menuCode" name="menuCode" placeholder="PK[영문대문자 코드형식 [XX-XX-XX-XX] 두자리 대포영문조합 (예) 메뉴관리 (MENU MANAGER -> MM)" >
       </div>
      <div class="form-group">
         <label for="writer">메뉴URI</label>
