@@ -5,11 +5,11 @@
 <script type="text/javascript">
 const API_MAIN_PATH ="/staff";
   function funEdit(){	  
-	  	alert($('#menuReg').val());
+	  	//alert($('#menuReg').val());
         var strUrl = ($('#menuReg').val() =="UPDATE") ? API_MAIN_PATH + "/menuUpdate": API_MAIN_PATH + "/menuRegister";        
         var json_data = funJsonReplace(JSON.stringify(funGetJson())); 
-        alert(json_data);
-        document.write(json_data);
+        //alert(json_data);
+        //document.write(json_data);
        // return;
         var request = $.ajax({
 	    	url : strUrl,
@@ -286,7 +286,7 @@ function funSorting(objValue){
                     }
                 }
             }</script>
- <script>
+ <script type="text/javascript">
      var globalCounter = 0;
      var saveStateName = 'state-save-4';
      $("#tree-1").treegrid({initialState: 'collapsed'});
