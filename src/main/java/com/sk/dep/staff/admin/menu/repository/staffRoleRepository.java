@@ -23,6 +23,6 @@ import com.sk.dep.staff.admin.menu.domain.staffRole;
  */
  
 public interface staffRoleRepository extends JpaRepository<staffRole, Long>{ 	
-	
+	 
 }
  
