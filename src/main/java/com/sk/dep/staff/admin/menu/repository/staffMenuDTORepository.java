@@ -38,8 +38,8 @@ public interface staffMenuDTORepository extends JpaRepository<staffMenuDTO, Stri
 			"			  menu.menu_depth, \r\n" + 
 			"			  menu.menu_parents, \r\n" + 
 			"			  menu.menu_use,  \r\n" + 
-			"			  kk.menu_acl,\r\n" + 
-			"			  KK.menu_acl_name\r\n" + 
+			"			  menu_acl,\r\n" + 
+			"			  menu_acl_name\r\n" + 
 			"		FROM menu LEFT OUTER JOIN (\r\n" + 
 			"						SELECT  menu_acl_item.menu_code,\r\n" + 
 			"								GROUP_CONCAT(menu_acl_item.acl_code) menu_acl,\r\n" + 
@@ -61,8 +61,8 @@ public interface staffMenuDTORepository extends JpaRepository<staffMenuDTO, Stri
 			"			  menu.menu_depth, \r\n" + 
 			"			  menu.menu_parents, \r\n" + 
 			"			  menu.menu_use,  \r\n" + 
-			"			  kk.menu_acl,\r\n" + 
-			"			  KK.menu_acl_name\r\n" + 
+			"			  menu_acl,\r\n" + 
+			"			  menu_acl_name\r\n" + 
 			"		FROM menu LEFT OUTER JOIN (\r\n" + 
 			"						SELECT  menu_acl_item.menu_code,\r\n" + 
 			"								GROUP_CONCAT(menu_acl_item.acl_code) menu_acl,\r\n" + 
