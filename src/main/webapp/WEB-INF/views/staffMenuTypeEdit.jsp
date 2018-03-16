@@ -95,6 +95,7 @@ const API_MAIN_PATH ="/staff";
 		   obj = objArray[i].split('-');		   
 		   funAclAllEdit(objArray[i],obj[1],obj[2]);
 	   }  
+	   location.reload();
 	   alert("요청하신 작업이 처리되었습니다!")
   }
   
