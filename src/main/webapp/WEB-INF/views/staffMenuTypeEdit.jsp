@@ -9,7 +9,7 @@ const API_MAIN_PATH ="/staff";
   function funAclEdit(obj,Id,strMenu){ 
         var strUrl = ($('#menuReg').val() =="UPDATE") ?  API_MAIN_PATH  + "/groupMenuAclUpdate": API_MAIN_PATH  + "/groupMenuAclRegister";  
         var json_data = funJsonReplace(JSON.stringify(funGetJson(obj,Id,strMenu))); 
-        alert(json_data);
+        //alert(json_data);
        // document.write(json_data);
        // return;
         var request = $.ajax({
