@@ -128,7 +128,7 @@ const API_MAIN_PATH ="/staff";
       <div class="form-group" style="float:right;">
        <button type="button" class="btn btn-primary" name="btnRegister" id="btnRegister" onClick="funAllReg()" >등록</button>
        <button type="reset" class="btn btn-primary" name="btnReset" id="btnReset" >취소</button>
-       <button type="button" class="btn btn-primary" name="btnGroup" id="btnGroup" onClick="document.location.href='/groupEdit'" >그룹관리</button>
+       <button type="button" class="btn btn-primary" name="btnGroup" id="btnGroup" onClick="document.location.href='/staff/groupEdit'" >그룹관리</button>
       </div> 
       </c:if>
  	<table class="table table-hover" id="tree-2" >  
