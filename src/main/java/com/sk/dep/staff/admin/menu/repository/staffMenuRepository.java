@@ -97,16 +97,17 @@ public interface staffMenuRepository extends JpaRepository<staffMenu, String>{
 			"insert into menu(menu_id,menu_type,\r\n" + 
 			"menu_code,\r\n" + 
 			"menu_name,\r\n" + 
+			"menu_name_eng,\r\n" + 
 			"menu_url,\r\n" + 
 			"menu_group,\r\n" + 
 			"menu_step,\r\n" + 
 			"menu_depth,\r\n" + 
 			"menu_parents,\r\n" + 
 			"menu_use) \r\n" + 
-			" SELECT ?1 as menu_id,menu_type, ?2 as menu_code, ?3 as menu_name, ?4 as menu_url, ?5 as menu_group, IFNULL(menu_step,0) + 1 as menu_step, ?6 as menu_depth, 0 as menu_parents, 1 as menu_use\r\n" + 
+			" SELECT ?1 as menu_id,menu_type, ?2 as menu_code, ?3 as menu_name, ?4 as menu_name, ?5 as menu_url, ?6 as menu_group, IFNULL(menu_step,0) + 1 as menu_step, ?7 as menu_depth, 0 as menu_parents, 1 as menu_use\r\n" + 
 			"FROM menu where menu_group= ?5 \r\n" + 
-			"					and menu_step =(select max(menu_step) from menu where menu_group = ?5 and menu_depth > ?6)" , nativeQuery = true)
-	public void rootInsert(long menuId,String menuCode,String menuName,String menuUrl,long menuGroup,int menuDepth);
+			"					and menu_step =(select max(menu_step) from menu where menu_group = ?6 and menu_depth > ?7)" , nativeQuery = true)
+	public void rootInsert(long menuId,String menuCode,String menuName,String menuNameEng,String menuUrl,long menuGroup,int menuDepth);
 	
 }
  

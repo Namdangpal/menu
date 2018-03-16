@@ -48,6 +48,7 @@ public class staffMenuAclDTO implements Serializable {
 	@Id
 	private String menuCode;
  	private String menuName;
+ 	private String menuNameEng;
 	private String menuUrl;
 	private int menuGroup; 	
 	private int menuStep; 

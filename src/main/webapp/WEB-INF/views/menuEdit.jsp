@@ -8,7 +8,7 @@ const API_MAIN_PATH ="/staff";
 	  	//alert($('#menuReg').val());
         var strUrl = ($('#menuReg').val() =="UPDATE") ? API_MAIN_PATH + "/menuUpdate": API_MAIN_PATH + "/menuRegister";        
         var json_data = funJsonReplace(JSON.stringify(funGetJson())); 
-        //alert(json_data);
+        alert(json_data);
         //document.write(json_data);
        // return;
         var request = $.ajax({
@@ -60,6 +60,7 @@ const API_MAIN_PATH ="/staff";
       obj.menuType= $('#menuType').val();
       obj.menuCode = $('#menuCode').val();
       obj.menuName = $('#menuName').val();
+      obj.menuNameEng = $('#menuNameEng').val();
       obj.menuUrl = $('#menuUrl').val();
       obj.menuGroup = ($('#menuGroup').val() == "")? 0:$('#menuGroup').val();
       obj.menuStep =  ($('#menuStep').val() == "")? 0:$('#menuStep').val();
@@ -76,6 +77,7 @@ const API_MAIN_PATH ="/staff";
 	  $('#menuType').val(objValue.menuType);
 	  $('#menuCode').val(objValue.menuCode);	 
 	  $('#menuName').val(objValue.menuName); 
+	  $('#menuNameEng').val(objValue.menuNameEng); 
 	  $('#menuUrl').val(objValue.menuUrl);	
 	  $('#menuGroup').val(objValue.menuGroup); 
 	  $('#menuStep').val(objValue.menuStep); 
@@ -188,15 +190,19 @@ function funSorting(objValue){
       </div>  
       <div class="form-group">
         <label for="writer">메뉴명</label>
-        <input type="text" class="form-control" id="menuName" name="menuName" placeholder="메뉴명을 입력하세요." >
+        <input type="text" class="form-control" id="menuName" name="menuName" placeholder="메뉴명을 입력하세요. VARCHAR(100) 앞뒤공백제거 " >
+      </div> 
+       <div class="form-group">
+        <label for="writer">메뉴영문명</label>
+        <input type="text" class="form-control" id="menuNameEng" name="menuName" placeholder="메뉴 영문명을 입력하세요. 앞뒤공백제거 VARCHAR(100)" >
       </div>          
       <div class="form-group">
         <label for="writer">메뉴_CODE</label>
-        <input type="text" class="form-control" id="menuCode" name="menuCode" placeholder="PK[영문대문자 코드형식 [XX-XX-XX-XX] 두자리 대포영문조합 (예) 메뉴관리 (MENU MANAGER -> MM)" >
+        <input type="text" class="form-control" id="menuCode" name="menuCode" placeholder="PK[영문대문자 코드형식 [XX-XX-XX-XX] 두자리 대포영문조합 앞뒤공백제거 (예) 메뉴관리 (MENU MANAGER -> MM)" >
       </div>
      <div class="form-group">
         <label for="writer">메뉴URI</label>
-        <input type="text" class="form-control" id="menuUrl" name="menuUrl" placeholder="메뉴경로를 입력하세요." >
+        <input type="text" class="form-control" id="menuUrl" name="menuUrl" placeholder="메뉴경로를 입력하세요. 앞뒤공백제거" >
       </div>
      <div class="form-group">
         <label for="writer">메뉴접근권한</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -235,7 +241,7 @@ function funSorting(objValue){
 	    	<tr  class="treegrid-alfa${board.menuId}<c:if test="${board.menuParents != 0}"> treegrid-parent-alfa${board.menuParents}</c:if>" >
 	    		<!--<td>${board.menuId}</td> -->
 	    		<td><c:forEach var="item" varStatus="i" begin="1" end="${board.menuDepth}" step="1">
-    		    </c:forEach>${board.menuName}</td>  
+    		    </c:forEach>${board.menuName} (${board.menuNameEng})</td>  
     		    <td>${board.menuAclName}</td> 
     		    <td>${board.menuUrl}</td>  
     		    <td>${board.menuType}</td>

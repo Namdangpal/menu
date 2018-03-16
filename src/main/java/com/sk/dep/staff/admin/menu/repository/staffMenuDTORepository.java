@@ -32,6 +32,7 @@ public interface staffMenuDTORepository extends JpaRepository<staffMenuDTO, Stri
 			"		 	  menu.menu_type, \r\n" + 
 			"			  menu.menu_code, \r\n" + 
 			"		 	  menu.menu_name,  \r\n" + 
+			"		 	  menu.menu_name_eng,  \r\n" + 
 			"			  menu.menu_url, \r\n" + 
 			"			  menu.menu_group, \r\n" + 
 			"			  menu.menu_step, \r\n" + 
@@ -55,6 +56,7 @@ public interface staffMenuDTORepository extends JpaRepository<staffMenuDTO, Stri
 			"		 	  menu.menu_type, \r\n" + 
 			"			  menu.menu_code, \r\n" + 
 			"		 	  menu.menu_name,  \r\n" + 
+			"		 	  menu.menu_name_eng,  \r\n" + 
 			"			  menu.menu_url, \r\n" + 
 			"			  menu.menu_group, \r\n" + 
 			"			  menu.menu_step, \r\n" + 

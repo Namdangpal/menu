@@ -7,10 +7,10 @@
 <script type="text/javascript">
 const API_MAIN_PATH ="/staff";
   function funAclEdit(obj,Id,strMenu){ 
-        var strUrl = ($('#menuReg').val() =="UPDATE") ? API_MAIN_PATH + "/groupMenuAclUpdate": API_MAIN_PATH + "/groupMenuAclRegister";        
+        var strUrl = ($('#menuReg').val() =="UPDATE") ?  API_MAIN_PATH  + "/groupMenuAclUpdate": API_MAIN_PATH  + "/groupMenuAclRegister";  
         var json_data = funJsonReplace(JSON.stringify(funGetJson(obj,Id,strMenu))); 
-        //alert(json_data);
-        //document.write(json_data);
+        alert(json_data);
+       // document.write(json_data);
        // return;
         var request = $.ajax({
 	    	url : strUrl,
@@ -27,11 +27,28 @@ const API_MAIN_PATH ="/staff";
 		    		       } 
 		       });
   }
+  
+  function funAclAllEdit(obj,Id,strMenu){ 
+      var strUrl = ($('#menuReg').val() =="UPDATE") ? API_MAIN_PATH  + "/groupMenuAclUpdate": API_MAIN_PATH  + "/groupMenuAclRegister";    
+      var json_data = funJsonReplace(JSON.stringify(funGetJson(obj,Id,strMenu)));  
+      var request = $.ajax({
+	    	url : strUrl,
+	        type : 'post',
+	        data : json_data,
+	        contentType: "application/json",
+		      success: function(data) { 
+		    	  } ,
+		    	  error:function(request,status,error){
+		    		        //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		    		  alert("[에러][관리자에게 문의하세요]\n"+"error:"+request.responseText);
+		    		       } 
+		       });
+}
   function funJsonReplace(objValue){	  
 	  return objValue.replace(/\r/g, '').replace(/\\/g, "").replace(/\n/g, '').replace('"[','[').replace(']"',']');  
   }
   function funAclReg(obj){
-	 var strAcl; 
+	 var strAcl;
 	  var j = 0;
 	  strAcl = "";
 	    $("input[name='"+ obj+ "']:checked").each(function(i) {
@@ -41,7 +58,7 @@ const API_MAIN_PATH ="/staff";
 	    		strAcl = strAcl + ',' + $(this).val() + '';	       
 	        j++;
 	    });	  
-	    strAcl = strAcl + "";
+	    strAcl = strAcl + "";  	
 	  return strAcl;
  }
   function funGetJson(frm,Id,strMenu){
@@ -53,16 +70,35 @@ const API_MAIN_PATH ="/staff";
       obj.groupCode= $('#groupCode').val();
       obj.menuCode = $('#menuCode').val();
       obj.menuName = $('#menuName').val();
-      obj.aclJsonData =funAclReg(frm)
+      obj.aclJsonData = funAclReg(frm)
       //obj.aclJsonData = JSON.stringify(JSON.parse(funGetAcl()));          
       return obj;
-  }
-  
+  }  
   function funSetHidden(Id,strMenu){
 	   $('#menuId').val(Id);
        $('#menuCode').val(strMenu);
   }
  
+  function funAllReg(){	 
+	  var strAcl ="";
+	  var strTemp ;
+	  if ($("input[type=checkbox]").length > 0)
+	  	strAcl = $("input[type=checkbox]")[0].name;
+	  //alert(strAcl.replace('A',''));
+	   for(var i = 1 ; i < $("input[type=checkbox]").length; i++){
+		   strAcl = (strAcl.indexOf($("input[type=checkbox]")[i].name) == -1) ? strAcl + "," + $("input[type=checkbox]")[i].name : strAcl ;		
+	  } 
+	   var objArray = strAcl.split(',');
+	   var obj;
+	  // alert(objArray.length);
+	   for( var i = 0 ;i < objArray.length ; i++){
+		   obj = objArray[i].split('-');		   
+		   funAclAllEdit(objArray[i],obj[1],obj[2]);
+	   }  
+	   alert("요청하신 작업이 처리되었습니다!")
+  }
+  
+  
  </script>
 <div class="container">
 <div><h3>ADMIN메뉴관리</h3></div>
@@ -92,7 +128,7 @@ const API_MAIN_PATH ="/staff";
       <div class="form-group" style="float:right;">
        <button type="button" class="btn btn-primary" name="btnRegister" id="btnRegister" onClick="funAllReg()" >등록</button>
        <button type="reset" class="btn btn-primary" name="btnReset" id="btnReset" >취소</button>
-       <button type="button" class="btn btn-primary" name="btnGroup" id="btnGroup" onClick="document.location.href='/staff/groupEdit'" >그룹관리</button>
+       <button type="button" class="btn btn-primary" name="btnGroup" id="btnGroup" onClick="document.location.href='/groupEdit'" >그룹관리</button>
       </div> 
       </c:if>
  	<table class="table table-hover" id="tree-2" >  
@@ -100,9 +136,9 @@ const API_MAIN_PATH ="/staff";
 	    	<tr class="alert alert-info">
 	    		<!-- <th>번호</th> -->
 	    		<th>메 뉴</th>
-	    		<th>메뉴코드</th>
-	    		<th>권 한</th> 
-	    		<th>Specific</th>
+	    		<th>영문명</th>
+	    		<th>코 드</th> 
+	    		<th>권 한</th>
 	    		<!--<th>Url</th>  
 	    		<th>메뉴종류</th>
 		   		<th>메뉴코드</th>
@@ -118,13 +154,14 @@ const API_MAIN_PATH ="/staff";
 	    		<!--<td>${board.menuId}</td> -->
 	    		<td>
 	    			<c:forEach var="item" varStatus="i" begin="1" end="${board.menuDepth}" step="1">
-    		    	</c:forEach>${board.menuName}</td>  
+    		    	</c:forEach>${board.menuName}</td> 
+    		    	<td>${board.menuNameEng}</td> 
     		    	<td>${board.menuCode}</td>
     		    
     		    <td>     		       
     		       <c:set var="aclNameArray" value="${fn:split(board.menuAclName,',')}" />
     		        <c:forEach items="${board.menuAcl}" var="item" varStatus="idx"> 
-					    <input type="checkbox" id="chkAcl_${board.menuId}" name="chkAcl_${board.menuId}" value="${item}" <c:forEach var="result" items="${board.aclJsonData}" varStatus="status"> 
+					    <input type="checkbox" id="chkAcl_${board.menuId}" name="chkAcl-${board.menuId}-${board.menuCode}" value="${item}" <c:forEach var="result" items="${board.aclJsonData}" varStatus="status"> 
 					    		<c:if test="${item == result}">checked</c:if>
 							</c:forEach>>${aclNameArray[idx.index]}
 					</c:forEach> 
@@ -149,7 +186,7 @@ const API_MAIN_PATH ="/staff";
 	    		<td>사용대기</td> 
 	    		</c:if>-->
 	    		<td>
-	    		<span class="btn btn-default btn-xs" onclick="funAclEdit('chkAcl_${board.menuId}',${board.menuId},'${board.menuCode}')">등록</span>	    		
+	    		<span class="btn btn-default btn-xs" onclick="funAclEdit('chkAcl-${board.menuId}-${board.menuCode}',${board.menuId},'${board.menuCode}')">등록</span>	    		
 				</td>
 	    	</tr>   
 	    	 <c:set var="j" value="${j+1}" />    	   

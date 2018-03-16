@@ -54,6 +54,9 @@ public class staffMenu implements Serializable {
 	@Column(name="menu_name")
 	private String menuName;
 	
+	@Column(name="menu_name_eng")
+	private String menuNameEng;
+	
 	@Column(name="menu_url")
 	private String menuUrl;
 	@Column(name="menu_group")

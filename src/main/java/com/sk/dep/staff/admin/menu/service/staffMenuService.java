@@ -79,6 +79,6 @@ public class staffMenuService {
 		  return;
 	}
 	public void GroupRootInsert(staffMenu objMenu) throws Exception{ 
-		objMenuRepo.rootInsert(objMenu.getMenuId(),objMenu.getMenuCode(),objMenu.getMenuName(),objMenu.getMenuUrl(),objMenu.getMenuGroup(),objMenu.getMenuDepth());		 
+		objMenuRepo.rootInsert(objMenu.getMenuId(),objMenu.getMenuCode(),objMenu.getMenuName(),objMenu.getMenuNameEng(),objMenu.getMenuUrl(),objMenu.getMenuGroup(),objMenu.getMenuDepth());		 
 	}
 }
