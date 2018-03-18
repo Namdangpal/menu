@@ -3,6 +3,9 @@ package com.sk.dep.staff.admin.menu.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -61,4 +64,18 @@ public class staffGroupController {
 		System.out.println("staffGoroupUpdate호출");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/groupPagging/{pNo}/{size}/{sort}", method = RequestMethod.GET)
+    public Page<staffGroup> getAll(@PathVariable Integer pNo, 
+ 		                   @PathVariable Integer size,
+ 		                   @PathVariable String sort) {
+
+ 	   PageRequest request = new PageRequest(pNo-1, 
+							        			   size, 
+							        			   Sort.Direction.DESC,
+							        			   sort);
+
+               return objGroupService.getAllStaffGroup(request);
+
+    }
 }
