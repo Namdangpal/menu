@@ -3,6 +3,8 @@ package com.sk.dep.staff.admin.menu.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sk.dep.staff.admin.menu.domain.staffGroup;
 import com.sk.dep.staff.admin.menu.domain.staffRole;
 import com.sk.dep.staff.admin.menu.service.staffRoleService;
 
@@ -50,6 +53,13 @@ public class staffRoleController {
 	public List<staffRole> getListALL() throws Exception{			 
 		return  objRoleService.ListAll();
 	}
+	
+	@RequestMapping(value = "/roleAllList/{pNo}/{size}}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+    public Page<staffRole> getListALLPagging(@PathVariable Integer pNo,@PathVariable Integer size) {
+ 	   PageRequest request = new PageRequest(pNo,size);
+               return objRoleService.getAllStaffRole(request);
+    }
 	
 	@RequestMapping(value="/roleRegister", method=RequestMethod.POST,  headers="Accept=application/json")
 	public ResponseEntity<?> roleregister(@RequestBody staffRole staffrole) throws Exception{		 

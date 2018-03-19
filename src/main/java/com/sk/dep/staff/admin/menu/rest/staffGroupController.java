@@ -52,6 +52,13 @@ public class staffGroupController {
 		return  objGroupService.ListAll();
 	}
 	
+	@RequestMapping(value = "/groupAllList/{pNo}/{size}}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+    public Page<staffGroup> getAllPagging(@PathVariable Integer pNo,@PathVariable Integer size) {
+ 	   PageRequest request = new PageRequest(pNo,size);
+               return objGroupService.getAllStaffGroup(request);
+    }
+	
 	@RequestMapping(value="/groupRegister", method=RequestMethod.POST,  headers="Accept=application/json")
 	public ResponseEntity<?> groupregister(@RequestBody staffGroup staffgroup) throws Exception{		 
 		objGroupService.Insert(staffgroup); 
@@ -65,17 +72,4 @@ public class staffGroupController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/groupPagging/{pNo}/{size}/{sort}", method = RequestMethod.GET)
-    public Page<staffGroup> getAll(@PathVariable Integer pNo, 
- 		                   @PathVariable Integer size,
- 		                   @PathVariable String sort) {
-
- 	   PageRequest request = new PageRequest(pNo-1, 
-							        			   size, 
-							        			   Sort.Direction.DESC,
-							        			   sort);
-
-               return objGroupService.getAllStaffGroup(request);
-
-    }
 }
