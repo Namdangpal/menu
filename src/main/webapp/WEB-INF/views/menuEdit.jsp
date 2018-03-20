@@ -108,7 +108,7 @@ const API_MAIN_PATH ="/staff";
   
   function funMenuUseChange(menuId,menuDepth,menuUse){
 	  menuUse = (menuUse == "1") ? "0":"1";
-	  var strUrl= '/menuUseChage/' + menuId + '/' + menuDepth + '/'+ menuUse ;
+	  var strUrl= API_MAIN_PATH + '/menuUseChage/' + menuId + '/' + menuDepth + '/'+ menuUse ;
       var request = $.ajax({
 	    	url : strUrl,
 	        type : 'get',
