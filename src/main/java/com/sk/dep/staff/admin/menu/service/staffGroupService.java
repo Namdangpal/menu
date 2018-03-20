@@ -40,6 +40,30 @@ public class staffGroupService {
 		return objGroupRepo.findAll();
 	}
 	
+	public Page<staffGroup> ListAll(Pageable page){		
+		return objGroupRepo.findAll(page);
+	}	
+	
+	public Page<staffGroup> ListfindByRoleCodeContaining(String RoleCode,Pageable page){
+		return objGroupRepo.findByRoleCodeContaining(RoleCode, page);
+	}	
+	public Page<staffGroup> ListfindByGroupCodeContaining(String GroupCode,Pageable page){
+		return objGroupRepo.findByGroupCodeContaining(GroupCode, page);
+	}
+	public Page<staffGroup> ListfindByRoleCodeContainingAndGroupUse(String RoleCode,String GroupUse,Pageable page){
+		return objGroupRepo.findByGroupCodeContainingAndGroupUse(RoleCode, GroupUse, page);
+	} 
+	public Page<staffGroup> ListfindByRoleCodeContainingAndGroupCodeContainingAndGroupUse(String RoleCode,String GroupCode,String GroupUse,Pageable page){
+		return objGroupRepo.findByRoleCodeContainingAndGroupCodeContainingAndGroupUse(RoleCode,GroupCode, GroupUse, page);
+	}  
+	public Page<staffGroup> ListfindByRoleCodeContainingAndGroupNameContainingAndGroupUse(String RoleCode,String GroupName,String GroupUse,Pageable page){
+		return objGroupRepo.findByRoleCodeContainingAndGroupNameContainingAndGroupUse(RoleCode,GroupName,GroupUse,page);
+	}  
+	
+	public Page<staffGroup> ListfindByGroupUse(String GroupUse,Pageable page){
+		return objGroupRepo.findByGroupUse(GroupUse, page);
+	}
+	
 	public void Insert(staffGroup objGroup) throws Exception{ 
 		//objApi.setApiId(5L);
 		objGroupRepo.save(objGroup);		 
@@ -49,12 +73,4 @@ public class staffGroupService {
 		//objApi.setApiId(5L);
 		objGroupRepo.save(objGroup);		 
 	}
-	
-	public Page<staffGroup> getAllStaffGroup(Pageable page) {
-
-		return objGroupRepo.findAll(page);
-
-	}
-	
-	
 }

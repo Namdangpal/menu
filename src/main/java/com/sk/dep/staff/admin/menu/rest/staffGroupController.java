@@ -56,9 +56,55 @@ public class staffGroupController {
 	@ResponseBody
     public Page<staffGroup> getAllPagging(@PathVariable Integer pNo,@PathVariable Integer size) {
  	   PageRequest request = new PageRequest(pNo,size);
-               return objGroupService.getAllStaffGroup(request);
+               return objGroupService.ListAll(request);
     }
+    @RequestMapping(value="/groupAllList/{GroupUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffGroup> getListfindByGroupUse(@PathVariable String GroupUse,@PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);	 
+		return  objGroupService.ListfindByGroupUse(GroupUse, request);
+	}	
+	@RequestMapping(value="/groupAllList/RoleCode/{RoleCode}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffGroup> getListfindByRoleCodeContaining(@PathVariable String RoleCode,@PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);	 
+		return  objGroupService.ListfindByRoleCodeContaining(RoleCode, request);
+	}
 	
+	@RequestMapping(value="/groupAllList/RoleCode/{RoleCode}/{RoleCode}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffGroup> getListfindByRoleCodeContainingAndGroupUse(
+				@PathVariable String RoleCode,
+				@PathVariable String GroupUse,
+				@PathVariable Integer pNo,
+				@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);	 
+		return  objGroupService.ListfindByRoleCodeContainingAndGroupUse(RoleCode,GroupUse, request);
+	}
+	@RequestMapping(value="/groupAllList/{RoleCode}/{GroupCode}/{GroupUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffGroup> getListfindByRoleCodeContainingAndGroupCodeContainingAndGroupUse(
+			@PathVariable String RoleCode,
+			@PathVariable String GroupCode,
+			@PathVariable String GroupUse,
+			@PathVariable Integer pNo,
+			@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);	 
+		return  objGroupService. ListfindByRoleCodeContainingAndGroupCodeContainingAndGroupUse(RoleCode,GroupCode, GroupUse, request);
+	}
+	
+	@RequestMapping(value="/groupAllList/GouprName/{RoleCode}/{GroupName}/{GroupUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffGroup> getListfindByRoleCodeContainingAndGroupNameContainingAndGroupUse(
+			@PathVariable String RoleCode,
+			@PathVariable String GroupName,
+			@PathVariable String GroupUse,
+			@PathVariable Integer pNo,
+			@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);	 
+		return  objGroupService.ListfindByRoleCodeContainingAndGroupNameContainingAndGroupUse(RoleCode,GroupName, GroupUse, request);
+	}
+	  
 	@RequestMapping(value="/groupRegister", method=RequestMethod.POST,  headers="Accept=application/json")
 	public ResponseEntity<?> groupregister(@RequestBody staffGroup staffgroup) throws Exception{		 
 		objGroupService.Insert(staffgroup); 
