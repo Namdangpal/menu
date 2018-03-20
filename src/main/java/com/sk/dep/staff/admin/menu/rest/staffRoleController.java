@@ -58,8 +58,43 @@ public class staffRoleController {
 	@ResponseBody
     public Page<staffRole> getListALLPagging(@PathVariable Integer pNo,@PathVariable Integer size) {
  	   PageRequest request = new PageRequest(pNo,size);
-               return objRoleService.getAllStaffRole(request);
+               return objRoleService.ListAll(request);
     }
+	
+	@RequestMapping(value="/roleAllList/{RoleUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffRole> getListALLRoleUse(@PathVariable String RoleUse, @PathVariable Integer pNo,@PathVariable Integer size) throws Exception{
+		PageRequest request = new PageRequest(pNo,size);
+		return  objRoleService.ListAllRoleUse(RoleUse,request);
+	}
+	
+	@RequestMapping(value="/roleAllList/roleCode/{RoleCode}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffRole> getListFindByRoleCode(@PathVariable String RoleCode, @PathVariable Integer pNo,@PathVariable Integer size) throws Exception{			 
+		PageRequest request = new PageRequest(pNo,size);
+		return  objRoleService.ListFindByRoleCode(RoleCode,request);
+	}
+	
+	@RequestMapping(value="/roleAllList/roleName/{RoleName}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffRole> getListFindByRoleName(@PathVariable String RoleName, @PathVariable Integer pNo,@PathVariable Integer size) throws Exception{			 
+		PageRequest request = new PageRequest(pNo,size);
+		return  objRoleService.ListFindByRoleName(RoleName,request);
+	}
+	@RequestMapping(value="/roleAllList/roleCode/{RoleCode}/{RoleUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffRole> getListFindByRoleCodeAndRoleUse(@PathVariable String RoleCode,@PathVariable String RoleUse, @PathVariable Integer pNo,@PathVariable Integer size) throws Exception{			 
+		PageRequest request = new PageRequest(pNo,size);
+		return  objRoleService.ListFindByRoleCodeAndRoleUse(RoleCode, RoleUse,request);
+	}
+	
+	@RequestMapping(value="/roleAllList/roleName/{RoleName}/{RoleUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffRole> getListFindByRoleNameAndRoleUse(@PathVariable String RoleName,@PathVariable String RoleUse, @PathVariable Integer pNo,@PathVariable Integer size) throws Exception{			 
+		PageRequest request = new PageRequest(pNo,size);
+		return  objRoleService.ListFindByRoleNameAndRoleUse(RoleName, RoleUse,request);
+	}
+	 
 	
 	@RequestMapping(value="/roleRegister", method=RequestMethod.POST,  headers="Accept=application/json")
 	public ResponseEntity<?> roleregister(@RequestBody staffRole staffrole) throws Exception{		 
@@ -70,6 +105,13 @@ public class staffRoleController {
 	@RequestMapping(value="/roleUpdate", method=RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE) 
 	public ResponseEntity<?> roleupdate(@RequestBody staffRole staffrole) throws Exception{
 		objRoleService.Update(staffrole); 
+		System.out.println("roleUpdate호출");
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/roleDelete", method=RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE) 
+	public ResponseEntity<?> roledelete(@RequestBody staffRole staffrole) throws Exception{
+		objRoleService.Delete(staffrole); 
 		System.out.println("roleUpdate호출");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

@@ -50,7 +50,7 @@ public interface staffMenuAclDTORepository extends JpaRepository<staffMenuAclDTO
 			"											 GROUP BY menu_acl_item.menu_code) KK ON menu.menu_code = KK.menu_code ) AA\r\n" + 
 			"			LEFT outer Join (SELECT * FROM staff_acl_json \r\n" + 
 			"													WHERE role_code = ?1 AND  group_code = ?2 ) BB\r\n" + 
-			"			ON AA.menu_code = BB.menu_code \r\n" + 
+			"			ON AA.menu_code = BB.menu_code WHERE menu_use = 1 \r\n" + 
 			"	ORDER BY AA.menu_group,AA.menu_step " , nativeQuery = true)
 	public List<staffMenuAclDTO>  staffGroupMenuAclList(String roleCode,String groupCode);
 	

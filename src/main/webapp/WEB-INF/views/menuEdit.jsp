@@ -257,7 +257,7 @@ function funSorting(objValue){
 	    			<span class="btn btn-default btn-xs" onclick="funSubInsert('${board.menuCode}','INSERT')">하위등록</span>
 	    			</c:if>
 					<span class="btn btn-default btn-xs" onclick="funGetData('${board.menuCode}','UPDATE')" >수정</span>
-					<!--<span class="btn btn-default btn-xs" onclick="funSorting('${board.menuAclName}') " >테스트</span>-->
+					<!--  <span class="btn btn-default btn-xs" onclick="funDelete('${board.menuCode}')">삭제</span>-->
 				</td>
 	    	</tr>   
 	    	 <c:set var="j" value="${j+1}" />    	   

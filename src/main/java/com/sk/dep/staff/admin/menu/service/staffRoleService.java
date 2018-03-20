@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.sk.dep.staff.admin.menu.domain.staffGroup;
 import com.sk.dep.staff.admin.menu.domain.staffRole;
 import com.sk.dep.staff.admin.menu.repository.staffRoleRepository;
 
@@ -41,12 +40,29 @@ public class staffRoleService {
 	public List<staffRole> ListAll(){		
 		return objRole.findAll();
 	}
-	
-	public Page<staffRole> getAllStaffRole(Pageable page) {
-
+	public Page<staffRole> ListAll(Pageable page){		
 		return objRole.findAll(page);
-
 	}
+	public Page<staffRole> ListAllRoleUse(String value,Pageable page){		
+		return objRole.findByRoleUse(value,page);
+	}
+	
+	public Page<staffRole> ListFindByRoleCode(String value,Pageable page){		
+		return objRole.findByRoleCodeContaining(value,page);
+	}
+	
+	public Page<staffRole> ListFindByRoleName(String value,Pageable page){		
+		return objRole.findByRoleNameContaining(value,page);
+	}
+	
+	public Page<staffRole> ListFindByRoleCodeAndRoleUse(String RoleCode,String RoleUse,Pageable page){		
+		return objRole.findByRoleCodeContainingAndRoleUse(RoleCode, RoleUse,page);
+	}
+	
+	public Page<staffRole> ListFindByRoleNameAndRoleUse(String RoleName,String RoleUse,Pageable page){		
+		return objRole.findByRoleNameContainingAndRoleUse(RoleName, RoleUse,page);
+	}
+	
 	public void Insert(staffRole objrole) throws Exception{ 
 		//objApi.setApiId(5L);
 		objRole.save(objrole);		 
@@ -55,5 +71,9 @@ public class staffRoleService {
 	public void Update(staffRole objrole) throws Exception{ 
 		//objApi.setApiId(5L);
 		objRole.save(objrole);		 
+	}
+	public void Delete(staffRole objrole) throws Exception{ 
+		//objApi.setApiId(5L);
+		objRole.delete(objrole.getRoleId()); 
 	}
 }
