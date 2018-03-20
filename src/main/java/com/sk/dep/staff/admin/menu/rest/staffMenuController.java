@@ -62,6 +62,17 @@ public class staffMenuController {
 		return  objMenuService.ListAll();
 	}
 	
+	@RequestMapping(value="/menuUseChage/{menuId}/{menuDepth}/{menuUse}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public void setMenuUseChage(@PathVariable Long menuId,@PathVariable Long menuDepth,@PathVariable String menuUse) throws Exception{	
+		if(menuDepth == 1) {
+			objMenuService.MenuUseGroupChange(menuUse, menuId);
+		}else {
+			objMenuService.MenuUseChildChange(menuUse, menuId);
+			objMenuService.MenuUseMineChange(menuUse, menuId);
+		}
+		
+	}
 	@RequestMapping(value="/menuRegister", method=RequestMethod.POST,  headers="Accept=application/json")
 	public ResponseEntity<?> groupregister(@RequestBody staffMenu staffmenu) throws Exception{
 		 

@@ -81,4 +81,15 @@ public class staffMenuService {
 	public void GroupRootInsert(staffMenu objMenu) throws Exception{ 
 		objMenuRepo.rootInsert(objMenu.getMenuId(),objMenu.getMenuCode(),objMenu.getMenuName(),objMenu.getMenuNameEng(),objMenu.getMenuUrl(),objMenu.getMenuGroup(),objMenu.getMenuDepth());		 
 	}
+	
+	public void MenuUseGroupChange(String menuUse,long menuGroup) throws Exception{  
+		objMenuRepo.setMenuUseGroupChange(menuUse, menuGroup); 
+	}	 
+	public void MenuUseChildChange(String menuUse,long menuParents) throws Exception{  
+		objMenuRepo.setMenuUseChildChange(menuUse, menuParents);
+	}
+	
+	public void MenuUseMineChange(String menuUse,long menuId) throws Exception{  
+		objMenuRepo.setMenuUseMineChange(menuUse, menuId);
+	}
 }

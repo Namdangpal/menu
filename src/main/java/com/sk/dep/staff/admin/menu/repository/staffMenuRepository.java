@@ -84,12 +84,24 @@ public interface staffMenuRepository extends JpaRepository<staffMenu, String>{
 						" AND menu_depth >= ?2\r\n" + 
 						" AND menu_parents = ?3 ) AA ) " , nativeQuery = true)
 	public void setSubStepIncrement(long menuGroup,long menuDepth,long menuParents); 
-	/*
+	
 	@Transactional
 	@Modifying
-	@Query(value = "UPDATE menu SET menu_step = IFNULL(menu_step,0) + 1\r\n" + 
-					"			  where menu_group=?1 AND menu_step >=(select menu_step from (select IFNULL(MAX(menu_step),0) + 1 as menu_step from menu where menu_group=?1) AA)" , nativeQuery = true)
-	public void setRootStepIncrement(long menuGroup);*/
+	@Query(value = "UPDATE menu SET menu_use = ?1 " + 
+					"			  where menu_group=?2  " , nativeQuery = true)
+	public void setMenuUseGroupChange(String menuUse,long menuGroup); 
+	
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE menu SET menu_use = ?1 " + 
+					"			  where menu_parents=?2  " , nativeQuery = true)
+	public void setMenuUseChildChange(String menuUse,long menuParents); 
+	
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE menu SET menu_use = ?1 " + 
+					"			  where menu_id=?2  " , nativeQuery = true)
+	public void setMenuUseMineChange(String menuUse,long menuId); 
 	
 	@Transactional
 	@Modifying
