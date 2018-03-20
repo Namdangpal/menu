@@ -54,7 +54,7 @@ public class staffRoleController {
 		return  objRoleService.ListAll();
 	}
 	
-	@RequestMapping(value = "/roleAllList/{pNo}/{size}}", method=RequestMethod.GET, headers="Accept=application/json")
+	@RequestMapping(value = "/roleAllList/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
 	@ResponseBody
     public Page<staffRole> getListALLPagging(@PathVariable Integer pNo,@PathVariable Integer size) {
  	   PageRequest request = new PageRequest(pNo,size);
