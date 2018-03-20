@@ -3,6 +3,8 @@ package com.sk.dep.staff.admin.menu.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +51,47 @@ public class staffMenuAclController {
 	public List<staffMenuAcl> getListALL() throws Exception{			 
 		return  objMenuAclService.ListAll();
 	}
+	@RequestMapping(value="/aclAllList/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuAcl> getListALL(@PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuAclService.ListAll(request);
+	}
 	
+	@RequestMapping(value="/aclAllList/{AclUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuAcl> getListfindByAclUse(@PathVariable String AclUse,@PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuAclService.ListfindByAclUse(AclUse,request);
+	}
+	
+	@RequestMapping(value="/aclAllList/AclCode/{AclCode}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuAcl> getListfindByAclCodeContaining(@PathVariable String AclCode,@PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuAclService.ListfindByAclCodeContaining(AclCode,request);
+	}
+	
+	@RequestMapping(value="/aclAllList/AclCode/{AclCode}/{AclUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuAcl> getListfindByAclCodeContainingAndAclUse(@PathVariable String AclCode,@PathVariable String AclUse,@PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuAclService.ListfindByAclCodeContainingAndAclUse(AclCode, AclUse,request);
+	}
+	
+	@RequestMapping(value="/aclAllList/AclName/{AclName}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuAcl> getListfindByAclNameContaining(@PathVariable String AclName,@PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuAclService.ListfindByAclNameContaining(AclName,request);
+	} 
+ 
+	@RequestMapping(value="/aclAllList/AclCode/{AclName}/{AclUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuAcl> getListfindByAclNameContainingAndAclUse(@PathVariable String AclName,@PathVariable String AclUse,@PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuAclService.ListfindByAclNameContainingAndAclUse(AclName, AclUse,request);
+	}
 	@RequestMapping(value="/aclRegister", method=RequestMethod.POST,  headers="Accept=application/json")
 	public ResponseEntity<?> menuaclregister(@RequestBody staffMenuAcl staffmenuacl) throws Exception{		 
 		objMenuAclService.Insert(staffmenuacl); 

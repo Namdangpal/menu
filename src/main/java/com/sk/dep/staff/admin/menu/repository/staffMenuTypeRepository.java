@@ -1,6 +1,8 @@
 package com.sk.dep.staff.admin.menu.repository;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -26,10 +28,14 @@ import com.sk.dep.staff.admin.menu.domain.staffMenuType;
  */
  
 public interface staffMenuTypeRepository extends JpaRepository<staffMenuType, String>{ 	
-	@Query(value = "SELECT * FROM menu_type Where type_code =?1" , nativeQuery = true)
-	public staffMenuType findByMenuTypeCode(String typeCode);
-	
+	public Page<staffMenuType> findByTypeCodeContaining(String TypeCode,Pageable page);
+	public Page<staffMenuType> findByTypeNameContaining(String TypeName,Pageable page);
+	public Page<staffMenuType> findByTypeCodeContainingAndTypeUse(String TypeCode,String TypeUse,Pageable page);
+	public Page<staffMenuType> findByTypeNameContainingAndTypeUse(String TypName,String TypeUse,Pageable page);
+	public Page<staffMenuType> findByTypeUse(String TypeUse,Pageable page);
+	public staffMenuType findByTypeCode(String TypeCode);
+	 
 	@Query(value = "SELECT * FROM menu_type Where type_use= 1 Order by type_id" , nativeQuery = true)
-	public List<staffMenuType> findByMenuTypeUseCode();
+	public List<staffMenuType> findByMenuTypeUseCode(); 
 }
  

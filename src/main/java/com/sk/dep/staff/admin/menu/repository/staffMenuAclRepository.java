@@ -1,4 +1,6 @@
 package com.sk.dep.staff.admin.menu.repository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -24,7 +26,11 @@ import com.sk.dep.staff.admin.menu.domain.staffMenuAcl;
  */
  
 public interface staffMenuAclRepository extends JpaRepository<staffMenuAcl, String>{ 	
-	@Query(value = "SELECT * FROM menu_acl Where acl_code =?1" , nativeQuery = true)
-	public staffMenuAcl findByMenuAclCode(String aclCode);
+	public staffMenuAcl findByAclCode(String aclCode);
+	public Page<staffMenuAcl> findByAclUse(String AclUse,Pageable page);
+	public Page<staffMenuAcl> findByAclCodeContaining(String AclCode,Pageable page);
+	public Page<staffMenuAcl> findByAclNameContaining(String AclName,Pageable page);
+	public Page<staffMenuAcl> findByAclCodeContainingAndAclUse(String AclCode,String AclUse,Pageable page);
+	public Page<staffMenuAcl> findByAclNameContainingAndAclUse(String AclName,String AclUse,Pageable page);
 }
  

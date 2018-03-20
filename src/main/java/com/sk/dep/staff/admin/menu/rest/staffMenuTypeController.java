@@ -3,6 +3,8 @@ package com.sk.dep.staff.admin.menu.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +51,39 @@ public class staffMenuTypeController {
 	public List<staffMenuType> getListALL() throws Exception{			 
 		return  objMenuTypeService.ListAll();
 	}
+	@RequestMapping(value="/menuTypeAllList/{TypeUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuType> getListFindByTypeUse(@PathVariable String TypeUse, @PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuTypeService.ListFindByTypeUse(TypeUse,request);
+	}
 	
+	@RequestMapping(value="/menuTypeAllList/TypeCode/{TypeCode}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuType> getListFindByTypeCode(@PathVariable String TypeCode, @PathVariable Integer pNo,@PathVariable Integer size) throws Exception{		
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuTypeService.ListFindByTypeCode(TypeCode,request);
+	}
+	@RequestMapping(value="/menuTypeAllList/TypeCode/{TypeCode}/{TypeUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuType> getListFindByTypeCodeAndTypeUse(@PathVariable String TypeCode,@PathVariable String TypeUse, @PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuTypeService.ListFindByTypeCodeAndTypeUse(TypeCode, TypeUse,request);
+	}
+	
+	@RequestMapping(value="/menuTypeAllList/TypeName/{TypeName}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuType> getListFindByTypeName(@PathVariable String TypeName, @PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuTypeService.ListFindByTypeName(TypeName,request);
+	}
+	
+	@RequestMapping(value="/menuTypeAllList/TypeName/{TypeName}/{TypeUse}/{pNo}/{size}", method=RequestMethod.GET, headers="Accept=application/json")
+	@ResponseBody
+	public Page<staffMenuType> getListFindByTypeNameAndTypeUse(@PathVariable String TypeName,@PathVariable String TypeUse, @PathVariable Integer pNo,@PathVariable Integer size) throws Exception{	
+		PageRequest request = new PageRequest(pNo,size);
+		return  objMenuTypeService.ListFindByTypeCodeAndTypeUse(TypeName, TypeUse,request);
+	}
 	@RequestMapping(value="/menuTypeRegister", method=RequestMethod.POST,  headers="Accept=application/json")
 	public ResponseEntity<?> menytyperegister(@RequestBody staffMenuType staffmenutype) throws Exception{		 
 		objMenuTypeService.Insert(staffmenutype); 
