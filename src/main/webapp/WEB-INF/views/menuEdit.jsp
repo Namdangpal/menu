@@ -104,7 +104,24 @@ const API_MAIN_PATH ="/staff";
 	    		  alert("[에러][관리자에게 문의하세요]\n"+"error:"+request.responseText);
  		       } 
 	       }); 
-} 
+	} 
+  
+  function funMenuUseChange(menuId,menuDepth,menuUse){
+	  menuUse = (menuUse == "1") ? "0":"1";
+	  var strUrl= '/menuUseChage/' + menuId + '/' + menuDepth + '/'+ menuUse ;
+      var request = $.ajax({
+	    	url : strUrl,
+	        type : 'get',
+	        data : '',
+	      success: function(data) { 	    	  
+	    	  location.reload();
+	       	  alert("요청하신 작업이 완료되었습니다.");
+	    	  } ,
+	    	  error:function(request,status,error){
+	    		  alert("[에러][관리자에게 문의하세요]\n"+"error:"+request.responseText);
+ 		       } 
+	       }); 
+	} 
   function funGetData(id,strType){
 	   var strUrl= API_MAIN_PATH + '/menuDTOListJoinOne/' + id;
        var request = $.ajax({
@@ -257,7 +274,9 @@ function funSorting(objValue){
 	    			<span class="btn btn-default btn-xs" onclick="funSubInsert('${board.menuCode}','INSERT')">하위등록</span>
 	    			</c:if>
 					<span class="btn btn-default btn-xs" onclick="funGetData('${board.menuCode}','UPDATE')" >수정</span>
-					<!--  <span class="btn btn-default btn-xs" onclick="funDelete('${board.menuCode}')">삭제</span>-->
+					<span class="btn btn-default btn-xs" onclick="funMenuUseChange('${board.menuId}','${board.menuDepth}','${board.menuUse}')">
+					<c:if test="${board.menuUse == 1}">사용중지</c:if><c:if test="${board.menuUse != 1}">재사용</c:if>
+					</span>
 				</td>
 	    	</tr>   
 	    	 <c:set var="j" value="${j+1}" />    	   
