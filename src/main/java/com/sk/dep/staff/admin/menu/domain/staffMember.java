@@ -42,10 +42,7 @@ public class staffMember implements Serializable {
 		@Id
 		@Column(name="staff_id" )
 		private String staffId;		
-		 
-		@Column(name="role_name" )
-		private String roleName;
-		
+		 		
 		@Column(name="staff_pwd")
 		private String staffPwd; 
 		
@@ -85,7 +82,7 @@ public class staffMember implements Serializable {
 		@Column(name="staff_reg_date")
 		private String staffRegDate;
 		
-		@Column(name="staff_lst_update")
-		private String staffLstUpdate;
+		@Column(name="staff_last_update")
+		private String staffLastUpdate;
 		 
 }
