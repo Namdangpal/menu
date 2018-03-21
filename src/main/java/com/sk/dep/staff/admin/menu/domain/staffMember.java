@@ -37,7 +37,7 @@ public class staffMember implements Serializable {
 		
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		@Column(name="staff_seq") 
-		private Long seqSeq;	
+		private Long staffSeq;	
 		
 		@Id
 		@Column(name="staff_id" )

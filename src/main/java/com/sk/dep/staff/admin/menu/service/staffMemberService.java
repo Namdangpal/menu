@@ -34,9 +34,8 @@ public class staffMemberService {
 	private staffMemberRepository objStaffMember;
 	
 	public staffMember ListOne(String id){		
-		return objStaffMember.getOne(id);
+		return objStaffMember.findOne(id);
 	}
-	
 	public List<staffMember> ListAll(){		
 		return objStaffMember.findAll();
 	}
