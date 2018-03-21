@@ -12,8 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class ServiceStaffMenuApplication {
 	private static final Logger logger = LoggerFactory.getLogger(ServiceStaffMenuApplication.class); 
 	public static void main(String[] args) {
-		int intValue=10;
 		SpringApplication.run(ServiceStaffMenuApplication.class, args);
-		logger.info("디버그{}", intValue);
+		logger.info("Main{}");
 	}
 }

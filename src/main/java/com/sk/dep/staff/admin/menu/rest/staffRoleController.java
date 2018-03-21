@@ -2,6 +2,8 @@ package com.sk.dep.staff.admin.menu.rest;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,6 +42,9 @@ import com.sk.dep.staff.admin.menu.service.staffRoleService;
 @RestController
 @RequestMapping(value="/staff") 
 public class staffRoleController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(staffRoleController.class);
+
 	@Autowired
 	private staffRoleService  objRoleService;
 	@RequestMapping(value="/roleListOne/{id}", method=RequestMethod.GET, headers="Accept=application/json")
@@ -99,20 +104,20 @@ public class staffRoleController {
 	@RequestMapping(value="/roleRegister", method=RequestMethod.POST,  headers="Accept=application/json")
 	public ResponseEntity<?> roleregister(@RequestBody staffRole staffrole) throws Exception{		 
 		objRoleService.Insert(staffrole); 
-		System.out.println("roleRegister호출");
+		 logger.info("roleRegister");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	@RequestMapping(value="/roleUpdate", method=RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE) 
 	public ResponseEntity<?> roleupdate(@RequestBody staffRole staffrole) throws Exception{
 		objRoleService.Update(staffrole); 
-		System.out.println("roleUpdate호출");
+		logger.info("roleUpdate");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/roleDelete", method=RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE) 
 	public ResponseEntity<?> roledelete(@RequestBody staffRole staffrole) throws Exception{
 		objRoleService.Delete(staffrole); 
-		System.out.println("roleUpdate호출");
+		logger.info("roleDelete");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	

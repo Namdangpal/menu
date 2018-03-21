@@ -2,6 +2,8 @@ package com.sk.dep.staff.admin.menu.rest;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,6 +39,9 @@ import com.sk.dep.staff.admin.menu.service.staffMenuTypeService;
 @RestController
 @RequestMapping(value="/staff") 
 public class staffMenuTypeController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(staffMenuTypeController.class);
+
 	@Autowired
 	private staffMenuTypeService  objMenuTypeService;
 	
@@ -87,13 +92,13 @@ public class staffMenuTypeController {
 	@RequestMapping(value="/menuTypeRegister", method=RequestMethod.POST,  headers="Accept=application/json")
 	public ResponseEntity<?> menytyperegister(@RequestBody staffMenuType staffmenutype) throws Exception{		 
 		objMenuTypeService.Insert(staffmenutype); 
-		System.out.println("staffMenuRegister호출");
+		logger.info("menuTypeRegister");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	@RequestMapping(value="/menuTypeUpdate", method=RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE) 
 	public ResponseEntity<?> menutypeupdate(@RequestBody staffMenuType staffmenutype) throws Exception{
 		objMenuTypeService.Update(staffmenutype); 
-		System.out.println("staffMenuUpdate호출");
+		logger.info("menuTypeRegister");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

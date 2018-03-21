@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,9 @@ import com.sk.dep.staff.admin.menu.service.staffMenuDTOService;
 @RestController
 @RequestMapping(value="/staff") 
 public class staffMenuDTOController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(staffMenuDTOController.class);
+
 	@Autowired
 	private staffMenuDTOService  objMenuDTOService;   
 	 
@@ -127,7 +132,7 @@ public class staffMenuDTOController {
 			        currentLevel = objMenu.getMenuDepth();
 		    	}
 		    	i++;
-		    	System.out.println("숫자:" + i);
+		    	logger.info("숫자:" + i);
             }
             
             bookInfo2.put("child", bookArray3);
