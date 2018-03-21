@@ -49,6 +49,9 @@ public class staffMember implements Serializable {
 		@Column(name="staff_pwd")
 		private String staffPwd; 
 		
+		@Column(name="staff_name")
+		private String staffName;
+		
 		@Column(name="staff_mobile")
 		private String staffMobile;
 		
