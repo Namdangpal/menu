@@ -35,6 +35,7 @@ import com.sk.dep.staff.admin.menu.service.staffMemberService;
  * Copyright(c) 2018 SK Holdings All rights reserved 
  */
 @RestController
+@RequestMapping(value="/staff")
 public class staffMemberController {
 	@Autowired
 	private staffMemberService  objService;
@@ -86,13 +87,13 @@ public class staffMemberController {
 	}
 	 
 	
-	@RequestMapping(value="/staffRegister", method=RequestMethod.POST,  headers="Accept=application/json")
+	@RequestMapping(value="/staffMemberRegister", method=RequestMethod.POST,  headers="Accept=application/json")
 	public ResponseEntity<?> staffregister(@RequestBody staffMember staffmember) throws Exception{		 
 		objService.Insert(staffmember); 
 		System.out.println("roleRegister호출");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	@RequestMapping(value="/roleUpdate", method=RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE) 
+	@RequestMapping(value="/staffMemberUpdate", method=RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE) 
 	public ResponseEntity<?> staffupdate(@RequestBody staffMember staffmember) throws Exception{
 		objService.Update(staffmember); 
 		System.out.println("roleUpdate호출");
