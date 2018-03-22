@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sk.dep.staff.admin.menu.domain.staffMenuDTO;
 import com.sk.dep.staff.admin.menu.service.staffGroupService;
+import com.sk.dep.staff.admin.menu.service.staffMemberService;
 import com.sk.dep.staff.admin.menu.service.staffMenuAclDTOService;
 import com.sk.dep.staff.admin.menu.service.staffMenuAclService;
 import com.sk.dep.staff.admin.menu.service.staffMenuDTOService;
 import com.sk.dep.staff.admin.menu.service.staffMenuTypeService;
 import com.sk.dep.staff.admin.menu.service.staffRoleService;
+import com.sk.dep.staff.admin.menu.service.staffStateService;
 
  
 
@@ -56,6 +58,12 @@ public class indexController {
 	private staffMenuAclService  objMenuAclService;	
 	@Autowired
 	private staffMenuTypeService  objMenuTypeService; 
+	
+	@Autowired
+	private staffMemberService  objStaffMemberService; 
+		@Autowired
+	private staffStateService  objStaffStateService; 
+		
 	@RequestMapping(value="/") 
 	public String indexView() throws Exception{
 		System.out.println("indexView호출");
@@ -96,7 +104,16 @@ public class indexController {
 		model.addAttribute("menuTypeList",objMenuTypeService.ListUseAll()); 
 		return "menuEdit";
 	}
-	
+	@RequestMapping(value="/staffMemberEdit") 
+	public String staffView(Model model) throws Exception{
+		System.out.println("staffMemberEdit호출");
+		model.addAttribute("staffList",objStaffMemberService.ListAll());
+		model.addAttribute("groupList",objGroupService.ListAllGroupUse("1"));
+		model.addAttribute("staffStateList",objStaffStateService.ListAllStateUse("1"));
+		model.addAttribute("staffCompanyList",objStaffMemberService.staffMemberCompanyList());
+		model.addAttribute("staffAccountManagerList",objStaffMemberService.ListFindByStaffAccountManager("1"));
+		return "staffMemberEdit";
+	}
 	@RequestMapping(value="/staffMenuTypeEdit") 
 	public String staffMenuView(HttpServletRequest objRequest,Model model) throws Exception{
 		System.out.println("groupView호출");

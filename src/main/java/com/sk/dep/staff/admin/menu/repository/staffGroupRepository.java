@@ -1,4 +1,6 @@
 package com.sk.dep.staff.admin.menu.repository;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,5 +33,6 @@ public interface staffGroupRepository extends JpaRepository<staffGroup, Long>{
 	public Page<staffGroup> findByRoleCodeContainingAndGroupCodeContainingAndGroupUse(String RoleCode,String GroupCode,String GroupUse,Pageable page);
 	public Page<staffGroup> findByRoleCodeContainingAndGroupNameContainingAndGroupUse(String RoleCode,String GroupName,String GroupUse,Pageable page);
 	public Page<staffGroup> findByGroupUse(String GroupUse,Pageable page);
+	public List<staffGroup> findByGroupUse(String GroupUse);
 }
  

@@ -40,6 +40,10 @@ public class staffGroupService {
 		return objGroupRepo.findAll();
 	}
 	
+	public List<staffGroup> ListAllGroupUse(String GroupUse){		
+		return objGroupRepo.findByGroupUse(GroupUse);
+	}
+	
 	public Page<staffGroup> ListAll(Pageable page){		
 		return objGroupRepo.findAll(page);
 	}	

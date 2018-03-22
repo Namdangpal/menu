@@ -28,6 +28,24 @@ import com.sk.dep.staff.admin.menu.repository.staffMemberRepository;
  *------------------------------------------------------------------------------
  * Copyright(c) 2018 SK Holdings All rights reserved 
  */
+
+/*
+ * ------------------------------------------------------------------------------
+ * @Project     : SK Holdings DEP Project
+ * @Summary  : Init Class       
+ *
+ * @Author  : Administrator
+ * @Date     : 2018. 2. 13.
+ * @Version : 1.0
+ *------------------------------------------------------------------------------
+ *                  REVISION HISTORY                    
+ *------------------------------------------------------------------------------
+ *    DATE     AUTHOR                      DESCRIPTION                        
+ * ----------  ------        --------------------------------------------------
+ * 2018. 2. 13.   Administrator       Init                                     
+ *------------------------------------------------------------------------------
+ * Copyright(c) 2018 SK Holdings All rights reserved 
+ */
 @Service
 public class staffMemberService {
 	@Autowired
@@ -36,6 +54,7 @@ public class staffMemberService {
 	public staffMember ListOne(String id){		
 		return objStaffMember.findOne(id);
 	}
+	
 	public List<staffMember> ListAll(){		
 		return objStaffMember.findAll();
 	}
@@ -54,18 +73,32 @@ public class staffMemberService {
 		return objStaffMember.findByRoleCodeAndGroupCode(RoleCode, GroupCode,page);
 	}
 	
+	public List<staffMember> ListFindByRoleCodeAndGroupCode(String RoleCode,String GroupCode){		
+		return objStaffMember.findByRoleCodeAndGroupCode(RoleCode, GroupCode);
+	}
+	
+	public List<staffMember> ListFindByStaffAccountManager(String StaffAccountManager){		
+		return objStaffMember.findByStaffAccountManager(StaffAccountManager);
+	}
+	
 	public Page<staffMember> ListFindByStaffCompanyName(String StaffCompany,Pageable page){		
 		return objStaffMember.findByStaffCompanyContaining(StaffCompany, page);
 	}
 	
-	public void Insert(staffMember objStaff) throws Exception{ 
-		//objApi.setApiId(5L);
+	public void Insert(staffMember objStaff) throws Exception{ 		 
 		objStaffMember.save(objStaff);		 
 	}
 
-	public void Update(staffMember objStaff) throws Exception{ 
-		//objApi.setApiId(5L);
+	public void Update(staffMember objStaff) throws Exception{  
 		objStaffMember.save(objStaff);		 
+	}
+	
+	public boolean staffMemberExists(String id) throws Exception{ 		 
+		return objStaffMember.exists(id);
+	}
+	
+	public List<Object[]> staffMemberCompanyList() throws Exception{ 		 
+		return objStaffMember.findByDistinctStaffCompany();
 	}
 	 
 }

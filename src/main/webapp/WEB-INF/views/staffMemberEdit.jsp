@@ -3,14 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="Head.jsp" %>
 <script type="text/javascript">
+const API_MAIN_PATH ="/staff";
  function funEdit(){	  
 	//alert($('#menuReg').val());
-    var strUrl = ($('#staffReg').val() =="UPDATE") ? "/staffMemberUpdate":"/staffMemberRegister";        
+    var strUrl = ($('#staffReg').val() =="UPDATE") ? API_MAIN_PATH + "/staffMemberUpdate": API_MAIN_PATH + "/staffMemberRegister";        
     var json_data = funJsonReplace(JSON.stringify(funGetJson())); 
-    alert(strUrl);
-    alert(json_data);
-    var objMsg = funIdCheck();
-     alert(objMsg);
+    //alert(strUrl);
+    alert(json_data);   
     if(!funIdCheck()) {	    	
 	    //document.write(json_data);
 	    //return;
@@ -109,7 +108,7 @@ function funGetJson(){
   
 function funGetData(id){
 //alert(id);
-  var strUrl= '/staffListOne/' + id;
+  var strUrl= API_MAIN_PATH + '/staffListOne/' + id;
      var request = $.ajax({
    	url : strUrl,
        type : 'get',
@@ -125,7 +124,7 @@ function funGetData(id){
       });
  }   
  function funAllList(){
-    var strUrl= '/menuAllList';
+    var strUrl= API_MAIN_PATH + '/menuAllList';
 var request = $.ajax({
 		url : strUrl,
    	 type : 'get',
@@ -165,7 +164,7 @@ var request = $.ajax({
 			 alert("아이디를 입력하세요");
 		 return;
 	 }		  
-	 var strUrl= '/staffMemberExists/' + $("#staffId").val().replace(' ','');
+	 var strUrl= API_MAIN_PATH + '/staffMemberExists/' + $("#staffId").val().replace(' ','');
      var request = $.ajax({
 	    	url : strUrl,
 	        type : 'get',
