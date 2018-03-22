@@ -58,8 +58,8 @@ public class staffMember implements Serializable {
 		@Column(name="staff_part")
 		private String staffPart;
 		
-		@Column(name="staff_Position")
-		private String staffPostion;
+		@Column(name="staff_position")
+		private String staffPosition;
 		
 		@Column(name="staff_tel")
 		private String staffTel;
@@ -75,6 +75,12 @@ public class staffMember implements Serializable {
 		
 		@Column(name="staff_manager")
 		private String staffManager;
+		
+		@Column(name="staff_etc")
+		private String staffEtc;
+		
+		@Column(name="staff_account_manager")
+		private String staffAccountManager;
 		
 		@Column(name="staff_state")
 		private String staffState;
