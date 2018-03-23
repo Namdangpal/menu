@@ -69,6 +69,13 @@ public class indexController {
 		System.out.println("indexView호출");
 		return "redirect:/staff/roleEdit";
 	}
+	
+	
+	@RequestMapping(value="/vueTest") 
+	public String vueView() throws Exception{
+		System.out.println("indexView호출");
+		return "/vueTest";
+	}
 	@RequestMapping(value="/roleEdit") 
 	public String roleEditView(Model model) throws Exception{
 		System.out.println("roleEdit호출");
