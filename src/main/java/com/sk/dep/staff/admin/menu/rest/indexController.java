@@ -114,6 +114,13 @@ public class indexController {
 		model.addAttribute("staffAccountManagerList",objStaffMemberService.ListFindByStaffAccountManager("1"));
 		return "staffMemberEdit";
 	}
+	
+	@RequestMapping(value="/staffStateEdit") 
+	public String staffStateView(Model model) throws Exception{
+		System.out.println("staffStateEdit호출");
+		model.addAttribute("staffStateList",objStaffStateService.ListAll()); 
+		return "staffStateEdit";
+	}
 	@RequestMapping(value="/staffMenuTypeEdit") 
 	public String staffMenuView(HttpServletRequest objRequest,Model model) throws Exception{
 		System.out.println("groupView호출");

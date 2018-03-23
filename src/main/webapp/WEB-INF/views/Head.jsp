@@ -39,6 +39,7 @@
             <li><a href="/staff/menuTypeEdit">[메뉴타입관리]</a></li> 
             <li class="divider"></li>
             <li><a href="/staff/staffMemberEdit">[Staff관리]</a></li>
+            <li><a href="/staff/staffStateEdit">[Staff활동상태관리]</a></li>
           </ul>
         </li> 
       </ul>
