@@ -216,7 +216,7 @@ var request = $.ajax({
 			    	 <option value="${objCompany}">${objCompany}</option>
 			    </c:forEach>   
 		        </select>
-		         <input type="text" class="form-control" id="staffCompany" name="staffCompany" placeholder="회사명을 입력하세요 VARCHAR(100)" style="width:300px" >
+		         <input type="text" class="form-control" id="staffCompany" name="staffCompany" placeholder="회사명을 선택또는 직접입력하세요 VARCHAR(100)" style="width:300px" >
 		      </div> 
 		       <div class="form-group">
 		        <label for="writer">직책</label>
