@@ -7,9 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -46,6 +50,8 @@ import com.sk.dep.staff.admin.menu.service.staffStateService;
 @Controller
 @RequestMapping(value="/staff") 
 public class indexController {
+	private int INT_PAGE_BLOCK_SIZE = 10;
+	private static final Logger logger = LoggerFactory.getLogger(indexController.class);
 	@Autowired
 	private staffRoleService  objRoleService;	
 	@Autowired
@@ -110,6 +116,35 @@ public class indexController {
 		model.addAttribute("menuAclList",objMenuAclService.ListAll());
 		model.addAttribute("menuTypeList",objMenuTypeService.ListUseAll()); 
 		return "menuEdit";
+	}
+	
+	@RequestMapping(value="/staffMemberList") 
+	public String staffListView(Model model) throws Exception{
+		int pNo = 0 ; 
+		int size = 15;
+		logger.info("/staffMemberList");
+		PageRequest request = new PageRequest(pNo,size);
+		model.addAttribute("staffList",objStaffMemberService.ListAll(request));
+		model.addAttribute("groupList",objGroupService.ListAllGroupUse("1"));
+		model.addAttribute("staffStateList",objStaffStateService.ListAllStateUse("1"));
+		model.addAttribute("staffCompanyList",objStaffMemberService.staffMemberCompanyList());
+		model.addAttribute("staffAccountManagerList",objStaffMemberService.ListFindByStaffAccountManager("1"));
+		return "staffMemberList";
+	}
+	@RequestMapping(value="/staffMemberList/{pNo}/{size}") 
+	public String staffListView(@PathVariable Integer pNo,@PathVariable Integer size,Model model) throws Exception{
+		 int nowPageGroup = (int) Math.ceil((double)(pNo + 1) / this.INT_PAGE_BLOCK_SIZE);
+
+		logger.info("/staffMemberList");
+		PageRequest request = new PageRequest(pNo,size);
+		model.addAttribute("staffList",objStaffMemberService.ListAll(request));
+		model.addAttribute("groupList",objGroupService.ListAllGroupUse("1"));
+		model.addAttribute("staffStateList",objStaffStateService.ListAllStateUse("1"));
+		model.addAttribute("staffCompanyList",objStaffMemberService.staffMemberCompanyList());
+		model.addAttribute("staffAccountManagerList",objStaffMemberService.ListFindByStaffAccountManager("1"));
+		model.addAttribute("nowPageGroup", nowPageGroup); 
+		model.addAttribute("pageBlockSize",this.INT_PAGE_BLOCK_SIZE); 
+		return "staffMemberList";
 	}
 	@RequestMapping(value="/staffMemberEdit") 
 	public String staffView(Model model) throws Exception{

@@ -39,5 +39,8 @@ public interface staffMemberRepository extends JpaRepository<staffMember, String
 	
 	@Query(value = "SELECT Distinct(staff_company) staff_company FROM staff_member  Order by staff_company" , nativeQuery = true)
 	public List<Object[]> findByDistinctStaffCompany();
+	
+	@Query(value = "Update staff_member set staff_state = ?1 WHERE staff_id = ?2" , nativeQuery = true)
+	public void updateStaffMemberState(String StaffState,String StaffId);
 }
  

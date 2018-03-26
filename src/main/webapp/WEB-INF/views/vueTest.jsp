@@ -35,6 +35,26 @@
   <p>{{ message }}</p>
   <button v-on:click="reverseMessage">메시지 뒤집기</button>
 </div>
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+
+<div id="app-7">
+  <ol>
+    <!-- 
+      이제 각 todo-item 에 todo 객체를 제공합니다.
+      화면에 나오므로, 각 항목의 컨텐츠는 동적으로 바뀔 수 있습니다. 
+      또한 각 구성 요소에 "키"를 제공해야합니다 (나중에 설명 됨).
+     -->
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id">
+    </todo-item>
+  </ol>
+</div>
+
   <script>
 var app = new Vue({
     el: '#app', // 어떤 엘리먼트에 적용을 할 지 정합니다
@@ -77,6 +97,35 @@ var app5 = new Vue({
 	    }
 	  }
 	});
+var app6 = new Vue({
+	  el: '#app-6',
+	  data: {
+	    message: '안녕하세요 Vue!'
+	  }
+	});
+Vue.component('todo-item', {
+	  // 이제 todo-item 컴포넌트는 "prop" 이라고 하는
+	  // 사용자 정의 속성 같은 것을 입력받을 수 있습니다.
+	  // 이 prop은 todo라는 이름으로 정의했습니다.
+	  props: ['todo'],
+	  template: '<li>{{ todo.text }}</li>'
+	})
+	
+var app7 = new Vue({
+  el: '#app-7',
+  data: {
+    groceryList: [
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
+    ]
+  }
+,
+created: function () {
+  // `this` 는 vm 인스턴스를 가리킵니다.
+  console.log('a is:아무튼생성')
+}
+});
 
 </script>
   
