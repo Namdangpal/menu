@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sk.dep.staff.admin.menu.domain.staffMenuDTO;
 import com.sk.dep.staff.admin.menu.service.staffGroupService;
+import com.sk.dep.staff.admin.menu.service.staffMemberDTOService;
 import com.sk.dep.staff.admin.menu.service.staffMemberService;
 import com.sk.dep.staff.admin.menu.service.staffMenuAclDTOService;
 import com.sk.dep.staff.admin.menu.service.staffMenuAclService;
@@ -69,7 +70,8 @@ public class indexController {
 	private staffMemberService  objStaffMemberService; 
 		@Autowired
 	private staffStateService  objStaffStateService; 
-		
+	@Autowired
+	private staffMemberDTOService  objStaffMemberDTOService; 
 	@RequestMapping(value="/") 
 	public String indexView() throws Exception{
 		System.out.println("indexView호출");
@@ -118,34 +120,36 @@ public class indexController {
 		return "menuEdit";
 	}
 	
-	@RequestMapping(value="/staffMemberList") 
+	@RequestMapping(value="/staffMemberDTOList") 
 	public String staffListView(Model model) throws Exception{
 		int pNo = 0 ; 
 		int size = 15;
 		logger.info("/staffMemberList");
 		PageRequest request = new PageRequest(pNo,size);
-		model.addAttribute("staffList",objStaffMemberService.ListAll(request));
+		model.addAttribute("staffList",objStaffMemberDTOService.ListAll(request));
 		model.addAttribute("groupList",objGroupService.ListAllGroupUse("1"));
 		model.addAttribute("staffStateList",objStaffStateService.ListAllStateUse("1"));
 		model.addAttribute("staffCompanyList",objStaffMemberService.staffMemberCompanyList());
 		model.addAttribute("staffAccountManagerList",objStaffMemberService.ListFindByStaffAccountManager("1"));
 		return "staffMemberList";
 	}
-	@RequestMapping(value="/staffMemberList/{pNo}/{size}") 
+	@RequestMapping(value="/staffMemberDTOList/{pNo}/{size}") 
 	public String staffListView(@PathVariable Integer pNo,@PathVariable Integer size,Model model) throws Exception{
 		 int nowPageGroup = (int) Math.ceil((double)(pNo + 1) / this.INT_PAGE_BLOCK_SIZE);
-
-		logger.info("/staffMemberList");
+		logger.info("/staffMemberDTOList");
 		PageRequest request = new PageRequest(pNo,size);
-		model.addAttribute("staffList",objStaffMemberService.ListAll(request));
+		model.addAttribute("staffList",objStaffMemberDTOService.ListAll(request));
 		model.addAttribute("groupList",objGroupService.ListAllGroupUse("1"));
 		model.addAttribute("staffStateList",objStaffStateService.ListAllStateUse("1"));
 		model.addAttribute("staffCompanyList",objStaffMemberService.staffMemberCompanyList());
-		model.addAttribute("staffAccountManagerList",objStaffMemberService.ListFindByStaffAccountManager("1"));
+		model.addAttribute("staffAccountManagerList",objStaffMemberDTOService.ListFindByStaffAccountManager("1"));
 		model.addAttribute("nowPageGroup", nowPageGroup); 
 		model.addAttribute("pageBlockSize",this.INT_PAGE_BLOCK_SIZE); 
 		return "staffMemberList";
 	}
+	
+	
+	
 	@RequestMapping(value="/staffMemberEdit") 
 	public String staffView(Model model) throws Exception{
 		System.out.println("staffMemberEdit호출");
